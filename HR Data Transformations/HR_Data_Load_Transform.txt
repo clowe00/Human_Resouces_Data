@@ -1,0 +1,51 @@
+Data Load and transformations:
+
+CREATE EXTERNAL TABLE employee_sales
+(Age int
+, Attrition	string 
+, Business_Travel string
+, Daily_Rate double	
+, Department string
+, Distance_From_Home int
+, Education int
+, Education_Field string
+, Employee_Count int
+, Employee_Number string
+, Environment_Satisfaction int
+, Gender string
+, Hourly_Rate double
+, Job_Involvement int
+, Job_Level int
+, Job_Role string
+, Job_Satisfaction int	
+, Marital_Status string
+, Monthly_Income float
+, Monthly_Rate double	
+, Num_Companies_Worked int
+, Over_18 string
+, OverTime string
+, Percent_Salary_Hike double
+, Performance_Rating int
+, Relationship_Satisfaction int
+, Standard_Hours int
+, Stock_Option_Level int
+, Total_Working_Years  int
+, Training_Times_Last_Year int
+, Work_Life_Balance int
+, Years_At_Company int
+, Years_In_Current_Role int
+, Years_Since_Last_Promotion int
+, Years_With_Curr_Manager int
+)
+ ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+STORED AS TEXTFILE LOCATION '/Assign2' TBLPROPERTIES("skip.header.line.count"="1");
+
+
+INSERT OVERWRITE TABLE employee_sales
+Select attrition as Attrition
+, department as Department
+,  Job_Satisfaction as Job_Satisfaction
+, round (monthly_income, -3) as Monthly_Income 
+From employee_sales
+Where department = 'Sales'  
+Order by Job_Satisfaction desc;

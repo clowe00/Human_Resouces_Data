@@ -1,0 +1,109 @@
+CREATE EXTERNAL TABLE employee_sales
+(Age int
+, Attrition	string 
+, Business_Travel string
+, Daily_Rate double	
+, Department string
+, Distance_From_Home int
+, Education int
+, Education_Field string
+, Employee_Count int
+, Employee_Number string
+, Environment_Satisfaction int
+, Gender string
+, Hourly_Rate double
+, Job_Involvement int
+, Job_Level int
+, Job_Role string
+, Job_Satisfaction int	
+, Marital_Status string
+, Monthly_Income float
+, Monthly_Rate double	
+, Num_Companies_Worked int
+, Over_18 string
+, OverTime string
+, Percent_Salary_Hike double
+, Performance_Rating int
+, Relationship_Satisfaction int
+, Standard_Hours int
+, Stock_Option_Level int
+, Total_Working_Years  int
+, Training_Times_Last_Year int
+, Work_Life_Balance int
+, Years_At_Company int
+, Years_In_Current_Role int
+, Years_Since_Last_Promotion int
+, Years_With_Curr_Manager int
+)
+ ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+STORED AS TEXTFILE LOCATION '/Assign2' TBLPROPERTIES("skip.header.line.count"="1");
+
+
+
+
+select  count (attrition) as Attrition
+From employee_sales
+where attrition = 'Yes'
+and job_role = 'Sales Representative';
+
+
+select count (attrition) as Attrition
+From employee_sales 
+where attrition <> 'Yes'
+and job_role = 'Sales Representative';
+
+select   round(avg(monthly_income), 2) as average_monthly_income
+from   employee_sales
+where   attrition = 'Yes'
+ and job_role = 'Sales Representative';
+
+
+select round(min(monthly_income), 2) as min_monthly_income
+from  employee_sales
+where   attrition = 'Yes'
+ and job_role = 'Sales Representative';
+
+
+select round(max(monthly_income), 2) as max_monthly_income
+from  employee_sales
+where   attrition = 'Yes'
+ and job_role = 'Sales Representative';
+
+
+select count (attrition) as Attrition
+From employee_sales 
+where attrition <> 'Yes'
+and job_role = 'Sales Representative';
+
+select   round(avg(monthly_income), 2) as average_monthly_income
+from   employee_sales
+where   attrition <> 'Yes'
+ and job_role = 'Sales Representative';
+
+
+select round(min(monthly_income), 2) as min_monthly_income
+from  employee_sales
+where   attrition <> 'Yes'
+ and job_role = 'Sales Representative';
+
+
+select round(max(monthly_income), 2) as max_monthly_income
+from  employee_sales
+where   attrition <>'Yes'
+ and job_role = 'Sales Representative';
+
+
+select   monthly_income,
+  count (job_role) as count
+from  employee_sales
+where   attrition = 'Yes'
+  and job_role = 'Sales Representative'
+group by   monthly_income;
+
+select   monthly_income,
+  count (job_role) as count
+from  employee_sales
+where   attrition <> 'Yes'
+  and job_role = 'Sales Representative'
+group by   monthly_income;
+

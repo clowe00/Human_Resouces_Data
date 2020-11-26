@@ -1,0 +1,6 @@
+Source dataset for this project can be found by:
+
+1.  registering for a free account at www.kaggle.com 
+2.  navigating to https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset/data?select=WA_Fn-UseC_-HR-Employee-Attrition.csv
+3.  downloading the zipped file using the Download link 
+4.  extracting WA_Fn-UseC_-HR-Employee-Attrition.csv
